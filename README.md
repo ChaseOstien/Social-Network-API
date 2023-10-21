@@ -22,8 +22,8 @@ To use this application, make sure you have followed all installation instructio
 #### Example of a test API call for this application in Insomnia.
 ![Screenshot of command line prompts.](./assets/img/SocialNetworkApi.png)
 
-#### Video recording of program flow and output. 
-
+#### Video recording of application endpoint testing. 
+https://drive.google.com/file/d/1WaUXkxHN9qo65tx0-cqQPexQL3yJIm8D/view
 
 ## License
 ISC License
