@@ -7,6 +7,7 @@ module.exports = {
             const users = await User.find();
             res.json(users);
         } catch (err) {
+            console.error('Error', err);
             res.status(500).json(err);
         }
     },
@@ -22,6 +23,7 @@ module.exports = {
 
             res.json(user);
         } catch (err) {
+            console.error('Error', err);
             res.status(500).json(err);
         }
     },
@@ -31,6 +33,7 @@ module.exports = {
             const user = await User.create(req.body);
             res.json(user);
         } catch (err) {
+            console.error('Error', err);
             res.status(500).json(err);
         }
     },
@@ -50,6 +53,7 @@ module.exports = {
             res.json(user);
 
         } catch (err) {
+            console.error('Error', err);
             res.status(500).json(err);
         }
     }, 
@@ -65,6 +69,7 @@ module.exports = {
             await Thought.deleteMany({ _id: {$in: user.thoughts} });
             res.json({ message: 'User and associated Thoughts deleted!' });
         } catch (err) {
+            console.error('Error', err);
             res.status(500).json(err);
         }
     },
@@ -84,6 +89,7 @@ module.exports = {
                 res.json(friend);
 
         } catch (err) {
+            console.error('Error', err);
             res.status(500).json(err);
         }
     },
