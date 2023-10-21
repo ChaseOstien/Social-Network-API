@@ -37,7 +37,7 @@ module.exports = {
     // Update a user
     async updateUser(req, res) {
         try {
-            const user = User.findOneAndUpdate(
+            const user = await User.findOneAndUpdate(
                 { _id: req.params.userId },
                 { $set: req.body },
                 { runValidators: true, new: true }
@@ -46,6 +46,8 @@ module.exports = {
             if (!user) {
                 return res.status(404).json({ message: 'No user found with that ID!' });
             }
+
+            res.json(user);
 
         } catch (err) {
             res.status(500).json(err);
@@ -71,7 +73,7 @@ module.exports = {
         try {
             const friend = await User.findOneAndUpdate(
                 { _id: req.params.userId },
-                { $addToSet: { friends: req.body } },
+                { $addToSet: { friends: req.params.friendId } },
                 { runValidators: true, new: true }
             );
 
@@ -88,9 +90,10 @@ module.exports = {
     // delete a friend
     async deleteFriend(req, res) {
         try {
+
             const friend = await User.findOneAndUpdate(
                 { _id: req.params.userId },
-                { $pull: { friends: { userId: req.params.userId } } },
+                { $pull: { friends: req.params.friendId } },
                 { runValidators: true, new: true }
             );
 
@@ -101,6 +104,7 @@ module.exports = {
             res.json(friend);
 
         } catch (err) {
+            console.error('Error', err);
             res.status(500).json(err);
         }
     }
